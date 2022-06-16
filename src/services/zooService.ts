@@ -1,4 +1,4 @@
-import { IAnimal } from "../models/Animal";
+import { IAnimal } from "../models/IAnimal";
 import { get } from "./handleRequests";
 const baseUrl = "https://animals.azurewebsites.net/api/animals";
 
