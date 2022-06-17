@@ -1,9 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Outlet } from "react-router-dom";
 import { IAnimal } from "../../models/IAnimal";
 import { add } from "../../redux/features/animalSlice";
 import { getList } from "../../services/storageService";
 import { getAllAnimals } from "../../services/zooService";
+import { BackgroundContainer } from "../StyledComponents/BackgroundContainer";
+import { HeaderContainer } from "../StyledComponents/HeaderContainer";
+import { Heading } from "../StyledComponents/Heading";
 
 export const Layout = () => {
   const dispatch = useDispatch();
@@ -26,5 +30,16 @@ export const Layout = () => {
     }
   });
 
-  return <></>;
+  return (
+    <BackgroundContainer>
+      <header>
+        <HeaderContainer>
+          <Heading>Zoooooo</Heading>
+        </HeaderContainer>
+      </header>
+      <main>
+        <Outlet></Outlet>
+      </main>
+    </BackgroundContainer>
+  );
 };

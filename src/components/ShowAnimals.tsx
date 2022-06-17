@@ -5,17 +5,14 @@ import { makeAnimalHungry } from "../redux/features/animalSlice";
 //import { IAnimal } from "../models/IAnimal";
 import { IState } from "../redux/models/IState";
 import { AnimalLink } from "./StyledComponents/AnimalLink";
-import { FeedParagraph } from "./StyledComponents/FeedParagraph";
 import { IsHungry } from "./StyledComponents/IsHungry";
 import { LinkHeading } from "./StyledComponents/LinkHeading";
 import { LinkImage } from "./StyledComponents/LinkImage";
-import { LinkImageContainer } from "./StyledComponents/LinkImageContaniner";
 import { Food } from "@styled-icons/fluentui-system-regular";
-/* interface IShowAnimalProps {
-  animal: IAnimal;
-} */
+import { Paragraph } from "./StyledComponents/Paragraph";
+import { AnimalsContainer } from "./StyledComponents/AnimalsContainer";
 
-export const ShowAnimals = (/* props: IShowAnimalProps */) => {
+export const ShowAnimals = () => {
   const animals = useSelector((state: IState) => state.animals.value);
   const dispatch = useDispatch();
 
@@ -30,18 +27,18 @@ export const ShowAnimals = (/* props: IShowAnimalProps */) => {
 
   return (
     <>
-      {animals.map((animal) => {
-        return (
-          <AnimalLink to={"/animal/" + animal.id} key={animal.id}>
-            <LinkHeading>{animal.name}</LinkHeading>
-            {animal.isFed ? (
-              <></>
-            ) : (
-              <IsHungry>
-                <Food />
-              </IsHungry>
-            )}
-            <LinkImageContainer>
+      <AnimalsContainer>
+        {animals.map((animal) => {
+          return (
+            <AnimalLink to={"/animal/" + animal.id} key={animal.id}>
+              <LinkHeading>{animal.name}</LinkHeading>
+              {animal.isFed ? (
+                <></>
+              ) : (
+                <IsHungry>
+                  <Food />
+                </IsHungry>
+              )}
               <LinkImage
                 src={animal.imageUrl}
                 alt={animal.name}
@@ -51,10 +48,11 @@ export const ShowAnimals = (/* props: IShowAnimalProps */) => {
                     "https://cdn.dribbble.com/users/124059/screenshots/15231994/dribbble.png";
                 }}
               />
-            </LinkImageContainer>
-          </AnimalLink>
-        );
-      })}
+              <Paragraph>{animal.shortDescription}</Paragraph>
+            </AnimalLink>
+          );
+        })}
+      </AnimalsContainer>
     </>
   );
 };
